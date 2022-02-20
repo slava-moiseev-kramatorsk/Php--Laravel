@@ -9,13 +9,13 @@
 
 </head>
 
+<body>
 
 <div class="line3">
     <div>
         <ul class="">
             <li><a class="text_menu2" href="#">Новости</a></li>
             <li><a class="text_menu2" href="{{route('addTheme')}}">Добавить тему</a></li>
-            <li><a class="text_menu2" href="">Показать всё</a></li>
             <li><a class="text_menu2" href="{{route('registration')}}">Регистрация</a></li>
 
         </ul>
@@ -38,42 +38,16 @@
         <div class="title_view">Просмотры</div>
         <div class="title_view">Комментарии</div>
     </div>
-    <div class="line1">
-        <div class="number_theme">1</div>
-        <div class="name_theme" ><a class="href_theme" href="#">Проблемы голбального потепления</a></div>
-        <div class="view_theme">0</div>
-        <div class="comments_theme">0</div>
-    </div>
-    <div class="line1">
-        <div class="number_theme">1</div>
-        <div class="name_theme"><a class="href_theme" href="#"></a>Основная экзистенциальная дихотомия.Как не спиться</div>
-        <div class="view_theme">0</div>
-        <div class="comments_theme">0</div>
-    </div>
-    <div class="line1">
-        <div class="number_theme">1</div>
-        <div class="name_theme"><a class="href_theme" href="#">Обложат ли куртизанок налогом</a></div>
-        <div class="view_theme">0</div>
-        <div class="comments_theme">0</div>
-    </div>
-    <div class="line1">
-        <div class="number_theme">1</div>
-        <div class="name_theme"><a class="href_theme" href="#">10 доказательств того,что мы живем в матрице</a></div>
-        <div class="view_theme">0</div>
-        <div class="comments_theme">0</div>
-    </div>
-    <div class="line1">
-        <div class="number_theme">1</div>
-        <div class="name_theme"><a class="href_theme" href="#">SkyNet.Как скоро кожаный мешок его создат</a></div>
-        <div class="view_theme">0</div>
-        <div class="comments_theme">0</div>
-    </div>
-</div>
+    @foreach($forums as $forum)
+        <div class="line1">
 
+            <div class="number_theme">{{$forum->id}}</div>
+            <div class="name_theme" ><a class="href_theme" href="{{ route('show', ['forum' => $forum->id]) }}">{{$forum->name}}</a></div>
 
-
-<body>
-
+            <div class="view_theme">0</div>
+            <div class="comments_theme">0</div>
+        </div>
+@endforeach
 
 </body>
 </html>

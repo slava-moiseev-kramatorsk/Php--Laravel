@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     use HasFactory;
-
+//public $name,$content;
     protected $fillable = [
         'name',
         'content'
@@ -22,7 +22,7 @@ class Forum extends Model
      * @var mixed
      */
 
-    public function Forum(){
-        return $this->belongsToMany(Comment::class);
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,22 +19,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/registration', [UserController::class, 'registration'])->name('registration');
 Route::get('/new_user', [UserController::class, 'new_user'])->name('new_user');
-Route::get('/addNewTheme', [ForumController::class, 'addTheme'])->name('addTheme');
-Route::get('/create', [ForumController::class, 'create'])->name('create_theme');
-//Route::get('/show', [ForumController::class, 'show'])->name('show');
-//Route::get('/user/{id}', [UserController::class, 'show']);
-//Route::get('/submit', [UserController::class, 'submit'])->name('submit');
-//Route::get('/', [ForumController::class, 'theme'])->name('theme');
-//Route::get('/', [ForumController::class, 'addTheme'])->name('addTheme');
-//Route::get('/', [ForumController::class, 'comment'])->name('comment');
-//Route::get('/', [ForumController::class, 'showTheme'])->name('showTheme');
-//Route::get('/', [ForumController::class, 'addComment'])->name('addComment');
-//Route::get('/', [ForumController::class, 'countView'])->name('countView');
+
+Route::get('/NewTheme', [ForumController::class, 'addTheme'])->name('addTheme');
+Route::post('/create', [ForumController::class, 'create'])->name('create_theme');
+Route::get('/', [ForumController::class, 'index'])->name('index');
+Route::get('/{forum}/show', [ForumController::class, 'show'])->name('show');
+Route::delete('/{forum}', [ForumController::class, 'destroy'])->name('destroy');
+Route::get('/forums/{forum}/edit', [ForumController::class, 'edit'])->name('edit');
+Route::put('/forums/{id}', [ForumController::class, 'update'])->name('update');
+
+Route::post('/forums/{forum}/create-comment', [CommentController::class, 'create'])->name('create_comment');
+Route::get('/{comment}', [CommentController::class, 'index'])->name('show-comment');
 
 
 
 
+
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

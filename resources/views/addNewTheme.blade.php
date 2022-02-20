@@ -10,10 +10,12 @@
     <div><p class="title_ger">Добавьте новую тему</p></div>
 </div>
 <div>
-    <form class="form_style" name="feedback" method="get" action="{{route('create_theme')}}">
+    {{$errors}}
+    <form class="form_style" name="feedback" method="POST" action="{{route('create_theme')}}">
+        @csrf
         <div><label class="title_ger">Название темы </label></div>
-        <input type="text" name="theme_name">
-        <div><label class="title_ger">Пароль</label></div>
+        <input type="text" name="name">
+        <div><label class="title_ger">Содержание</label></div>
         <textarea type="text" name="content"></textarea>
 
 

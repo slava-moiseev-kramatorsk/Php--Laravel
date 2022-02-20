@@ -13,7 +13,7 @@ class Comment extends Model
         'name',
         'comment'
     ];
-    public function Comment_Forum(){
-        return $this->belongsToMany(Forum::class);
+    public function forum(){
+        return $this->belongsTo(Forum::class);
     }
 }
